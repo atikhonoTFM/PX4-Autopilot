@@ -204,9 +204,6 @@ static calibrate_return read_accelerometer_avg(float (&accel_avg)[MAX_ACCEL_SENS
 								case 2:
 									offset = Vector3f{sensor_correction.accel_offset_2};
 									break;
-								case 3:
-									offset = Vector3f{sensor_correction.accel_offset_3};
-									break;
 								}
 							}
 						}
@@ -495,9 +492,6 @@ int do_accel_calibration_quick(orb_advert_t *mavlink_log_pub)
 								break;
 							case 2:
 								offset = Vector3f{sensor_correction.accel_offset_2};
-								break;
-							case 3:
-								offset = Vector3f{sensor_correction.accel_offset_3};
 								break;
 							}
 						}

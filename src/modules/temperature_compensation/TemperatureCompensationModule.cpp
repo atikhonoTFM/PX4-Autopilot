@@ -140,7 +140,7 @@ void TemperatureCompensationModule::parameters_update()
 
 void TemperatureCompensationModule::accelPoll()
 {
-	float *offsets[] = {_corrections.accel_offset_0, _corrections.accel_offset_1, _corrections.accel_offset_2, _corrections.accel_offset_3 };
+	float *offsets[] = {_corrections.accel_offset_0, _corrections.accel_offset_1, _corrections.accel_offset_2 };
 
 	// For each accel instance
 	for (uint8_t uorb_index = 0; uorb_index < ACCEL_COUNT_MAX; uorb_index++) {
@@ -163,7 +163,7 @@ void TemperatureCompensationModule::accelPoll()
 
 void TemperatureCompensationModule::gyroPoll()
 {
-	float *offsets[] = {_corrections.gyro_offset_0, _corrections.gyro_offset_1, _corrections.gyro_offset_2, _corrections.gyro_offset_3 };
+	float *offsets[] = {_corrections.gyro_offset_0, _corrections.gyro_offset_1, _corrections.gyro_offset_2 };
 
 	// For each gyro instance
 	for (uint8_t uorb_index = 0; uorb_index < GYRO_COUNT_MAX; uorb_index++) {
@@ -198,7 +198,7 @@ void TemperatureCompensationModule::gyroPoll()
 
 void TemperatureCompensationModule::magPoll()
 {
-	float *offsets[] = {_corrections.mag_offset_0, _corrections.mag_offset_1, _corrections.mag_offset_2, _corrections.mag_offset_3 };
+	float *offsets[] = {_corrections.mag_offset_0, _corrections.mag_offset_1, _corrections.mag_offset_2 };
 
 	// For each mag instance
 	for (uint8_t uorb_index = 0; uorb_index < MAG_COUNT_MAX; uorb_index++) {
@@ -222,7 +222,7 @@ void TemperatureCompensationModule::magPoll()
 				// Use primary baro instance if mag temperature was NAN.
 				sensor_baro_s sensor_baro;
 
-				if (_accel_subs[0].update(&sensor_baro)) {
+				if (_baro_subs[0].update(&sensor_baro)) {
 					_corrections.mag_temperature[uorb_index] = sensor_baro.temperature;
 					_corrections_changed = true;
 				}
@@ -233,7 +233,7 @@ void TemperatureCompensationModule::magPoll()
 
 void TemperatureCompensationModule::baroPoll()
 {
-	float *offsets[] = {&_corrections.baro_offset_0, &_corrections.baro_offset_1, &_corrections.baro_offset_2, &_corrections.baro_offset_3 };
+	float *offsets[] = {&_corrections.baro_offset_0, &_corrections.baro_offset_1, &_corrections.baro_offset_2 };
 
 	// For each baro instance
 	for (uint8_t uorb_index = 0; uorb_index < BARO_COUNT_MAX; uorb_index++) {
