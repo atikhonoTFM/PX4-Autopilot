@@ -49,8 +49,8 @@ TemperatureCompensationModule::TemperatureCompensationModule() :
 {
 	for (int i = 0; i < SENSOR_COUNT_MAX; i++) {
 		_corrections.accel_temperature[i] = NAN;
-		_corrections.gyro_temperature[i] = NAN;
-		_corrections.baro_temperature[i] = NAN;
+		_corrections.gyro_temperature[i]  = NAN;
+		_corrections.baro_temperature[i]  = NAN;
 	}
 
 	_sensor_correction_pub.advertise();
@@ -180,7 +180,7 @@ void TemperatureCompensationModule::gyroPoll()
 					_corrections_changed = true;
 				}
 
-			} else if (PX4_ISNAN(sensor_gyro.temperature)) {
+			} else {
 
 				_corrections.gyro_device_ids[uorb_index] = sensor_gyro.device_id;
 
@@ -215,7 +215,7 @@ void TemperatureCompensationModule::magPoll()
 					_corrections_changed = true;
 				}
 
-			} else if (PX4_ISNAN(sensor_mag.temperature)) {
+			} else {
 
 				_corrections.mag_device_ids[uorb_index] = sensor_mag.device_id;
 
@@ -250,7 +250,7 @@ void TemperatureCompensationModule::baroPoll()
 					_corrections_changed = true;
 				}
 
-			} else if (PX4_ISNAN(sensor_baro.temperature)) {
+			} else {
 
 				_corrections.baro_device_ids[uorb_index] = sensor_baro.device_id;
 
